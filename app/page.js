@@ -44,14 +44,14 @@ const certifications = [
     title: "Proxmox VE Administration",
     issuer: "Proxmox",
     year: "2024",
-    file: "/certifications/certproxmox1.jpg",
+    file: "/certifications/certproxmox1.pdf",
   },
 
   {
     title: "Proxmox Backup Server",
     issuer: "Proxmox",
     year: "2024",
-    file: "/certifications/certproxmox2.png",
+    file: "/certifications/certproxmox2.pdf",
   },
 
   {
