@@ -1,11 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Download,
   Linkedin,
   Mail,
   ArrowUpRight,
+  X,
+  ExternalLink,
 } from "lucide-react";
 
 const experiences = [
@@ -42,30 +45,37 @@ const certifications = [
     title: "Proxmox VE Administration",
     issuer: "Proxmox",
     year: "2024",
+    file: "/certifications/proxmox-ve.pdf",
   },
   {
     title: "Proxmox Backup Server",
     issuer: "Proxmox",
     year: "2024",
+    file: "/certifications/proxmox-backup.pdf",
   },
   {
     title: "Getting Started in Cybersecurity 2.0",
     issuer: "Fortinet Training Institute",
     year: "2023",
+    file: "/certifications/fortinet-cybersecurity.pdf",
   },
   {
     title: "Introduction to the Threat Landscape 2.0",
     issuer: "Fortinet Training Institute",
     year: "2023",
+    file: "/certifications/fortinet-threat-landscape.pdf",
   },
   {
     title: "CFC Informaticien Généraliste",
     issuer: "ETML Lausanne",
     year: "2017",
+    file: "/certifications/cfc.pdf",
   },
 ];
 
 export default function Home() {
+  const [selectedCertification, setSelectedCertification] = useState(null);
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#020617] text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(255,0,128,0.18),transparent_35%)]" />
@@ -86,16 +96,16 @@ export default function Home() {
         </div>
 
         <nav className="hidden gap-10 text-sm text-white/70 md:flex">
-          <a href="#expertise" className="hover:text-white transition">
+          <a href="#expertise" className="transition hover:text-white">
             Expertise
           </a>
-          <a href="#parcours" className="hover:text-white transition">
+          <a href="#parcours" className="transition hover:text-white">
             Parcours
           </a>
-          <a href="#certifications" className="hover:text-white transition">
+          <a href="#certifications" className="transition hover:text-white">
             Certifications
           </a>
-          <a href="#contact" className="hover:text-white transition">
+          <a href="#contact" className="transition hover:text-white">
             Contact
           </a>
         </nav>
@@ -135,6 +145,7 @@ export default function Home() {
             <a
               href="https://www.linkedin.com/in/thomas-bopp-184a81295/"
               target="_blank"
+              rel="noreferrer"
               className="glass flex items-center gap-2 rounded-full px-6 py-4 transition hover:border-[#39ffd4]/40"
             >
               <Linkedin size={18} />
@@ -206,9 +217,7 @@ export default function Home() {
               key={exp.title}
               className="glass rounded-[1.75rem] p-8 transition duration-300 hover:border-[#39ffd4]/30 hover:shadow-[0_0_40px_rgba(57,255,212,0.08)]"
             >
-              <p className="text-sm font-bold text-[#39ffd4]">
-                {exp.date}
-              </p>
+              <p className="text-sm font-bold text-[#39ffd4]">{exp.date}</p>
 
               <h3 className="mt-4 text-2xl font-black">{exp.title}</h3>
 
@@ -247,9 +256,11 @@ export default function Home() {
 
         <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert) => (
-            <div
+            <button
+              type="button"
               key={cert.title}
-              className="glass rounded-[1.75rem] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#39ffd4]/30 hover:shadow-[0_0_40px_rgba(57,255,212,0.08)]"
+              onClick={() => setSelectedCertification(cert)}
+              className="glass group rounded-[1.75rem] p-7 text-left transition duration-300 hover:-translate-y-1 hover:border-[#39ffd4]/30 hover:shadow-[0_0_40px_rgba(57,255,212,0.08)]"
             >
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#39ffd4]/20 bg-[#39ffd4]/5 text-xl">
                 🛡️
@@ -265,9 +276,12 @@ export default function Home() {
 
               <div className="mt-8 flex items-center justify-between">
                 <span className="text-white/40">{cert.year}</span>
-                <div className="h-[1px] w-16 bg-gradient-to-r from-[#ff0080] to-[#39ffd4]" />
+                <span className="flex items-center gap-2 text-sm text-white/45 transition group-hover:text-white/80">
+                  Voir
+                  <ExternalLink size={15} />
+                </span>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </section>
@@ -300,6 +314,7 @@ export default function Home() {
             <a
               href="https://www.linkedin.com/in/thomas-bopp-184a81295/"
               target="_blank"
+              rel="noreferrer"
               className="glass flex items-center gap-2 rounded-full px-6 py-4 transition hover:border-[#39ffd4]/40"
             >
               <Linkedin size={18} />
@@ -313,6 +328,48 @@ export default function Home() {
         © {new Date().getFullYear()} Thomas Bopp — Infrastructure IT &
         systèmes réseau
       </footer>
+
+      {selectedCertification && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md">
+          <div className="glass relative flex h-[88vh] w-full max-w-6xl flex-col overflow-hidden rounded-[2rem]">
+            <div className="flex items-center justify-between border-b border-white/10 p-5">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#39ffd4]">
+                  {selectedCertification.issuer}
+                </p>
+                <h3 className="mt-1 text-xl font-black">
+                  {selectedCertification.title}
+                </h3>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <a
+                  href={selectedCertification.file}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70 transition hover:border-[#39ffd4]/40 hover:text-white"
+                >
+                  Ouvrir
+                </a>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedCertification(null)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/70 transition hover:border-[#ff0080]/50 hover:text-white"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            <iframe
+              src={selectedCertification.file}
+              title={selectedCertification.title}
+              className="h-full w-full bg-white"
+            />
+          </div>
+        </div>
+      )}
     </main>
   );
 }
