@@ -39,32 +39,35 @@ const experiences = [
     ],
   },
 ];
-
 const certifications = [
   {
     title: "Proxmox VE Administration",
     issuer: "Proxmox",
     year: "2024",
-    file: "/certifications/proxmox-ve.pdf",
+    file: "/certifications/certproxmox1.jpg",
   },
+
   {
     title: "Proxmox Backup Server",
     issuer: "Proxmox",
     year: "2024",
-    file: "/certifications/proxmox-backup.pdf",
+    file: "/certifications/certproxmox2.png",
   },
+
   {
     title: "Getting Started in Cybersecurity 2.0",
     issuer: "Fortinet Training Institute",
     year: "2023",
-    file: "/certifications/fortinet-cybersecurity.pdf",
+    file: "/certifications/cert1-fortinet.pdf",
   },
+
   {
     title: "Introduction to the Threat Landscape 2.0",
     issuer: "Fortinet Training Institute",
     year: "2023",
-    file: "/certifications/fortinet-threat-landscape.pdf",
+    file: "/certifications/cert2-fortinet.pdf",
   },
+
   {
     title: "CFC Informaticien Généraliste",
     issuer: "ETML Lausanne",
