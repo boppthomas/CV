@@ -25,6 +25,38 @@ const experiences = [
     ],
   },
 
+  const certifications = [
+  {
+    title: "Proxmox VE Administration",
+    issuer: "Proxmox",
+    year: "2024",
+  },
+
+  {
+    title: "Proxmox Backup Server",
+    issuer: "Proxmox",
+    year: "2024",
+  },
+
+  {
+    title: "Getting Started in Cybersecurity 2.0",
+    issuer: "Fortinet Training Institute",
+    year: "2023",
+  },
+
+  {
+    title: "Introduction to the Threat Landscape 2.0",
+    issuer: "Fortinet Training Institute",
+    year: "2023",
+  },
+
+  {
+    title: "CFC Informaticien Généraliste",
+    issuer: "ETML Lausanne",
+    year: "2017",
+  },
+];
+
   {
     title: "Freelance IT",
     company: "ABBCS",
@@ -215,6 +247,52 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CERTIFICATIONS */}
+      <section
+        id="certifications"
+        className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:px-10"
+      >
+        <p className="label">Certifications</p>
+      
+        <h2 className="mt-5 text-4xl font-black md:text-5xl">
+          Formations & certifications
+        </h2>
+      
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-white/55">
+          Validation de compétences en cybersécurité,
+          virtualisation et infrastructure système.
+        </p>
+      
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {certifications.map((cert) => (
+            <div
+              key={cert.title}
+              className="glass group rounded-[1.75rem] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#39ffd4]/30 hover:shadow-[0_0_40px_rgba(57,255,212,0.08)]"
+            >
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#39ffd4]/20 bg-[#39ffd4]/5 text-xl">
+                🛡️
+              </div>
+      
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#39ffd4]">
+                {cert.issuer}
+              </p>
+      
+              <h3 className="mt-4 text-2xl font-black leading-tight">
+                {cert.title}
+              </h3>
+      
+              <div className="mt-8 flex items-center justify-between">
+                <span className="text-white/40">
+                  {cert.year}
+                </span>
+      
+                <div className="h-[1px] w-16 bg-gradient-to-r from-[#ff0080] to-[#39ffd4]" />
+              </div>
             </div>
           ))}
         </div>
