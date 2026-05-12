@@ -234,7 +234,17 @@ export default function Home() {
               <p className="text-sm font-bold text-[#39ffd4]">{exp.date}</p>
               <h3 className="mt-4 text-2xl font-black">{exp.title}</h3>
               <p className="mt-2 text-white/50">{exp.company}</p>
-              <p className="mt-6 leading-8 text-white/62">{exp.text}</p>
+              <ul className="mt-6 space-y-3">
+              {exp.text.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-white/72"
+                >
+                  <span className="mt-[10px] h-2 w-2 shrink-0 rounded-full bg-[#39ffd4]" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
             </div>
           ))}
         </div>
