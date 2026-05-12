@@ -48,7 +48,7 @@ const experiences = [
     title: "Administrateur système et réseau",
     company: "CDS Engineering",
     date: "2023 — Aujourd’hui",
-    tasks: [
+    text: [
               "- Maintenance de divers parcs informatiques de 20 à 100 employés",
               "- Gestion d'un porte-feuille de plusieurs clients",
               "- Mise en place et gestion des divers technologies de virtualisation, Proxmox, Hyper-V et VMware",
