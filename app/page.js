@@ -3,312 +3,248 @@
 import { motion } from "framer-motion";
 import {
   Mail,
-  Phone,
-  MapPin,
   Linkedin,
   Download,
-  Server,
-  Shield,
-  Cloud,
-  Network,
-  HardDrive,
-  Wrench,
-  CheckCircle2,
   ArrowUpRight,
 } from "lucide-react";
 
-const profile = {
-  name: "Thomas Bopp",
-  role: "Administrateur système & réseau",
-  location: "Bex, Suisse",
-  phone: "+41 79 522 23 56",
-  email: "thomas.bopp.pro@gmail.com",
-  website: "bopp-thomas.ch",
-  linkedin: "https://www.linkedin.com/in/thomas-bopp-184a81295/",
-};
-
-const skills = [
-  { icon: Server, title: "Systèmes", text: "Windows, Linux, serveurs, GPO et administration quotidienne." },
-  { icon: Network, title: "Réseaux", text: "Infrastructure, accès distant, Fortinet et sécurité réseau." },
-  { icon: HardDrive, title: "Virtualisation", text: "VMware, Hyper-V, Proxmox, sauvegardes et restauration." },
-  { icon: Cloud, title: "Cloud", text: "Solutions cloud, migration, modernisation et maintenance." },
-  { icon: Shield, title: "Sécurité", text: "Firewall, accès distant sécurisé et protection des données." },
-  { icon: Wrench, title: "Support", text: "Dépannage, incidents, utilisateurs, documentation et formation." },
-];
-
-const experiences = [
-  {
-    role: "Administrateur système et réseau",
-    company: "CDS Engineering",
-    period: "2023 — Aujourd’hui",
-    tasks: [
-      "Administration et maintenance d’infrastructures multi-clients.",
-      "Gestion de parcs informatiques de plus de 100 utilisateurs.",
-      "Déploiement de solutions réseau, virtualisation, sauvegarde et sécurité.",
-      "Support technique, gestion d’incidents et accompagnement utilisateurs.",
-    ],
-  },
-  {
-    role: "Freelance IT",
-    company: "ABBCS",
-    period: "2018 — 2023",
-    tasks: [
-      "Gestion et suivi d’un portefeuille clients.",
-      "Dépannage et déploiement de solutions informatiques adaptées.",
-      "Pilotage de projets de l’analyse du besoin à la mise en production.",
-      "Formation et accompagnement des utilisateurs.",
-    ],
-  },
-];
-
-function Button({ href, children, variant = "primary" }) {
-  const style =
-    variant === "primary"
-      ? "bg-squidPink text-white shadow-glow hover:scale-[1.02]"
-      : "border border-white/15 bg-white/[0.04] text-white hover:border-squidGreen/50 hover:bg-white/[0.08]";
-
-  return (
-    <a
-      href={href}
-      target={href?.startsWith("http") ? "_blank" : undefined}
-      rel={href?.startsWith("http") ? "noreferrer" : undefined}
-      className={`inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${style}`}
-    >
-      {children}
-    </a>
-  );
-}
-
-function Card({ children, className = "" }) {
-  return (
-    <div className={`rounded-[2rem] border border-white/10 bg-white/[0.045] shadow-2xl backdrop-blur ${className}`}>
-      {children}
-    </div>
-  );
-}
-
-function SectionTitle({ eyebrow, title, text }) {
-  return (
-    <div className="mb-10 max-w-3xl">
-      <p className="text-xs font-bold uppercase tracking-[0.35em] text-squidGreen">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-black tracking-tight text-white md:text-5xl">{title}</h2>
-      {text && <p className="mt-4 text-lg leading-8 text-slate-300">{text}</p>}
-    </div>
-  );
-}
-
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-ink text-slate-100">
-      <div className="noise pointer-events-none fixed inset-0 opacity-30" />
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(255,47,125,.14),transparent_34rem),radial-gradient(circle_at_85%_15%,rgba(22,242,179,.10),transparent_32rem)]" />
+    <main className="relative min-h-screen overflow-hidden bg-[#03040a] text-white">
+      <div className="noise" />
 
-      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-10">
-        <a href="#top" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-squidPink/50 bg-squidPink/10 font-black text-white">
+      {/* HEADER */}
+
+      <header className="relative z-20 flex items-center justify-between px-8 py-8 lg:px-16">
+        <div className="flex items-center gap-4">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#ff168c]/50 bg-[#ff168c]/10 text-lg font-black">
             TB
           </div>
-          <div>
-            <p className="font-bold leading-none text-white">{profile.name}</p>
-            <p className="mt-1 text-xs text-slate-400">{profile.role}</p>
-          </div>
-        </a>
 
-        <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
-          <a href="#expertise" className="hover:text-white">Expertise</a>
-          <a href="#experience" className="hover:text-white">Expériences</a>
-          <a href="#contact" className="hover:text-white">Contact</a>
+          <div>
+            <p className="text-xl font-bold">Thomas Bopp</p>
+            <p className="text-sm text-white/50">
+              Infrastructure • Réseau • Système
+            </p>
+          </div>
+        </div>
+
+        <nav className="hidden gap-10 text-sm text-white/70 md:flex">
+          <a href="#about" className="hover:text-white">
+            À propos
+          </a>
+
+          <a href="#skills" className="hover:text-white">
+            Expertise
+          </a>
+
+          <a href="#contact" className="hover:text-white">
+            Contact
+          </a>
         </nav>
       </header>
 
-      <section id="top" className="relative z-10 mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-16 md:grid-cols-[1.05fr_.95fr] md:px-10 md:pb-28 md:pt-24">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <p className="mb-5 text-sm font-bold uppercase tracking-[0.35em] text-squidGreen">
-            Infrastructure IT • Systèmes • Réseau
+      {/* HERO */}
+
+      <section className="section grid items-center gap-20 lg:grid-cols-2">
+        {/* LEFT */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <p className="subtitle">
+            Administrateur système & réseau
           </p>
 
-          <h1 className="max-w-4xl text-5xl font-black tracking-tight text-white md:text-7xl">
-            Thomas Bopp
+          <h1 className="hero-title mt-8">
+            Infrastructure
+            <br />
+            <span className="neon-pink">système</span>{" "}
+            <span className="neon-cyan">& réseau</span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-xl leading-9 text-slate-300">
-            Administrateur système et réseau basé en Suisse romande, orienté infrastructure, sécurité,
-            virtualisation et support utilisateur.
+          <p className="hero-description mt-10">
+            Administrateur système et réseau basé en Suisse romande,
+            spécialisé dans les infrastructures IT, virtualisation,
+            cybersécurité et modernisation des environnements
+            professionnels.
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Button href="/CV.pdf">
-              <Download className="mr-2 h-4 w-4" />
-              Télécharger le CV
-            </Button>
+          <div className="mt-12 flex flex-wrap gap-4">
+            <a href="/CV.pdf" className="btn-primary">
+              <div className="flex items-center gap-2">
+                <Download size={18} />
+                Télécharger le CV
+              </div>
+            </a>
 
-            <Button href={profile.linkedin} variant="secondary">
-              <Linkedin className="mr-2 h-4 w-4" />
-              LinkedIn
-            </Button>
+            <a
+              href="https://www.linkedin.com/in/thomas-bopp-184a81295/"
+              target="_blank"
+              className="btn-secondary"
+            >
+              <div className="flex items-center gap-2">
+                <Linkedin size={18} />
+                LinkedIn
+              </div>
+            </a>
 
-            <Button href={`mailto:${profile.email}`} variant="secondary">
-              <Mail className="mr-2 h-4 w-4" />
-              Contact
-            </Button>
+            <a
+              href="mailto:thomas.bopp.pro@gmail.com"
+              className="btn-secondary"
+            >
+              <div className="flex items-center gap-2">
+                <Mail size={18} />
+                Contact
+              </div>
+            </a>
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.08 }}>
-          <Card className="p-8 md:p-10">
-            <p className="text-xs font-bold uppercase tracking-[0.35em] text-squidPink">
-              Profil
+        {/* RIGHT */}
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="relative flex items-center justify-center"
+        >
+          {/* SYMBOLS */}
+
+          <div className="absolute left-10 top-10">
+            <div className="neon-circle" />
+          </div>
+
+          <div className="absolute right-10 top-24">
+            <div className="neon-square" />
+          </div>
+
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
+            <div className="neon-triangle" />
+          </div>
+
+          {/* CARD */}
+
+          <div className="glass-card w-full max-w-xl p-10">
+            <p className="subtitle">
+              Contact rapide
             </p>
 
-            <h2 className="mt-5 text-3xl font-black text-white">
-              Administrateur système & réseau
+            <h2 className="mt-5 text-5xl font-black">
+              Thomas Bopp
             </h2>
 
-            <p className="mt-5 leading-8 text-slate-300">
-              Actuellement chez CDS Engineering à Villeneuve, je recherche de nouvelles opportunités
-              pour évoluer sur des environnements IT exigeants et renforcer mon expertise.
-            </p>
-
-            <div className="mt-8 grid gap-4 text-slate-200">
-              <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-squidGreen" />
-                {profile.phone}
+            <div className="mt-10 space-y-6 text-lg text-white/80">
+              <div className="flex items-center gap-4">
+                <Mail className="text-[#39ffd4]" />
+                thomas.bopp.pro@gmail.com
               </div>
 
-              <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-squidGreen" />
-                {profile.email}
+              <div className="flex items-center gap-4">
+                <ArrowUpRight className="text-[#39ffd4]" />
+                bopp-thomas.ch
               </div>
 
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-squidGreen" />
-                {profile.location}
-              </div>
-
-              <div className="flex items-center gap-3">
-                <ArrowUpRight className="h-5 w-5 text-squidGreen" />
-                {profile.website}
+              <div className="flex items-center gap-4">
+                <Linkedin className="text-[#39ffd4]" />
+                linkedin.com/in/thomas-bopp
               </div>
             </div>
-          </Card>
+          </div>
         </motion.div>
       </section>
 
-      <section id="expertise" className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:px-10">
-        <SectionTitle
-          eyebrow="Expertise"
-          title="Domaines d’intervention"
-          text="Une approche terrain : stabiliser l’existant, sécuriser les accès, documenter, déployer proprement et accompagner les utilisateurs."
-        />
+      {/* ABOUT */}
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {skills.map((skill) => {
-            const Icon = skill.icon;
+      <section
+        id="about"
+        className="section pt-0"
+      >
+        <div className="glass-card p-10 lg:p-14">
+          <p className="subtitle">À propos</p>
 
-            return (
-              <Card key={skill.title} className="p-7 transition hover:-translate-y-1 hover:border-squidPink/40">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-squidPink/10 text-squidPink">
-                  <Icon className="h-6 w-6" />
-                </div>
+          <h2 className="mt-5 text-4xl font-black">
+            Une approche terrain,
+            moderne et fiable.
+          </h2>
 
-                <h3 className="mt-6 text-xl font-black text-white">{skill.title}</h3>
-                <p className="mt-3 leading-7 text-slate-300">{skill.text}</p>
-              </Card>
-            );
-          })}
+          <p className="mt-8 max-w-4xl text-lg leading-9 text-white/70">
+            Actuellement en poste chez CDS Engineering à Villeneuve,
+            j’accompagne différentes entreprises dans la gestion,
+            l’évolution et la sécurisation de leurs infrastructures IT.
+            Mon travail couvre l’administration système,
+            la virtualisation, les sauvegardes, les réseaux,
+            les solutions cloud et le support utilisateurs.
+          </p>
         </div>
       </section>
 
-      <section id="experience" className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:px-10">
-        <SectionTitle eyebrow="Parcours" title="Expériences" />
+      {/* SKILLS */}
 
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.role}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
+      <section
+        id="skills"
+        className="section pt-0"
+      >
+        <div className="grid gap-6 lg:grid-cols-3">
+          {[
+            "Infrastructure & systèmes",
+            "Virtualisation & sauvegarde",
+            "Réseaux & cybersécurité",
+          ].map((item) => (
+            <div
+              key={item}
+              className="glass-card p-10 transition duration-300 hover:-translate-y-1"
             >
-              <Card className="p-7 md:p-9">
-                <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
-                  <div>
-                    <h3 className="text-2xl font-black text-white">{exp.role}</h3>
-                    <p className="mt-2 text-slate-300">{exp.company}</p>
-                  </div>
+              <p className="subtitle">Expertise</p>
 
-                  <span className="w-fit rounded-full border border-squidGreen/20 bg-squidGreen/10 px-4 py-2 text-sm font-bold text-squidGreen">
-                    {exp.period}
-                  </span>
-                </div>
-
-                <div className="mt-7 grid gap-3 md:grid-cols-2">
-                  {exp.tasks.map((task) => (
-                    <div key={task} className="flex gap-3 rounded-2xl bg-white/[0.03] p-4 leading-7 text-slate-300">
-                      <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-squidPink" />
-                      <p>{task}</p>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            </motion.div>
+              <h3 className="mt-6 text-3xl font-black">
+                {item}
+              </h3>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="relative z-10 mx-auto grid max-w-7xl gap-6 px-6 py-20 md:grid-cols-2 md:px-10">
-        <Card className="p-8">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-squidGreen">Formation</p>
-          <h2 className="mt-4 text-3xl font-black text-white">ETML Lausanne</h2>
-          <p className="mt-3 text-lg text-slate-300">CFC informaticien généraliste</p>
-          <p className="mt-2 text-slate-500">2012 — 2017</p>
-        </Card>
+      {/* CONTACT */}
 
-        <Card className="p-8">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-squidGreen">Qualités</p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            {["Autonome", "Organisé", "Teamwork", "Jovial", "Méthodique"].map((item) => (
-              <span key={item} className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-slate-200">
-                {item}
-              </span>
-            ))}
+      <section
+        id="contact"
+        className="section pt-0"
+      >
+        <div className="glass-card flex flex-col items-start justify-between gap-10 p-10 lg:flex-row lg:items-center">
+          <div>
+            <p className="subtitle">Contact</p>
+
+            <h2 className="mt-5 text-4xl font-black">
+              Discutons de votre infrastructure IT.
+            </h2>
           </div>
-        </Card>
+
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="mailto:thomas.bopp.pro@gmail.com"
+              className="btn-primary"
+            >
+              Envoyer un email
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/thomas-bopp-184a81295/"
+              target="_blank"
+              className="btn-secondary"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
       </section>
 
-      <section id="contact" className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:px-10">
-        <Card className="overflow-hidden border-squidPink/20">
-          <div className="grid gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:p-10">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.35em] text-squidPink">Contact</p>
-              <h2 className="mt-4 text-4xl font-black text-white">
-                Échangeons autour de vos besoins IT.
-              </h2>
-              <p className="mt-4 max-w-2xl leading-8 text-slate-300">
-                Disponible pour discuter d’opportunités en administration système, réseau,
-                infrastructure, support ou modernisation.
-              </p>
-            </div>
+      {/* FOOTER */}
 
-            <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
-              <Button href={`mailto:${profile.email}`}>
-                <Mail className="mr-2 h-4 w-4" />
-                Email
-              </Button>
-
-              <Button href={profile.linkedin} variant="secondary">
-                <Linkedin className="mr-2 h-4 w-4" />
-                LinkedIn
-              </Button>
-            </div>
-          </div>
-        </Card>
-      </section>
-
-      <footer className="relative z-10 mx-auto flex max-w-7xl flex-col gap-3 border-t border-white/10 px-6 py-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between md:px-10">
-        <p>© {new Date().getFullYear()} Thomas Bopp</p>
-        <p>Infrastructure • Réseau • Sécurité</p>
+      <footer className="relative z-20 border-t border-white/10 px-8 py-8 text-center text-sm text-white/40">
+        © {new Date().getFullYear()} Thomas Bopp — Infrastructure & Réseau
       </footer>
     </main>
   );
