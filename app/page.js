@@ -41,7 +41,7 @@ const experiences = [
 ];
 const certifications = [
   {
-    title: "Proxmox VE Administrations",
+    title: "Proxmox VE Administration",
     issuer: "Proxmox",
     year: "2024",
     file: "/certifications/certproxmox1.pdf",
